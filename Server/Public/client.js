@@ -4,8 +4,8 @@ function init() {
   console.log("JQ");
   $(".js-btn-data-equals").on("click", submitInputs);
 
-  $(".js-btn-data-operation").on("click", function(e) {
-    let oper = e.target.innerHTML;
+  $(".js-btn-data-operation").on("click", function(event) {
+    let oper = event.target.innerHTML;
     console.log(oper);
 
     handleOperator(oper);
@@ -14,10 +14,8 @@ function init() {
   $(".js-btn-data-clear").on("click", clearInputs);
 }
 
-let num1;
-let num2;
 let operator;
-let total;
+
 //
 //EVENT HANDLERS
 // -------------
@@ -50,7 +48,7 @@ function postInput(inputData) {
   console.log(inputData);
   $.ajax({
     method: "POST",
-    url: "/history",
+    url: "/inputs",
     data: inputData
   })
     .then(response => {
