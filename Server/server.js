@@ -17,9 +17,9 @@ app.get("/history", (req, res) => {
 });
 
 app.post("/history", (req, res) => {
-  let newItem = req.body;
-  console.log(newItem);
-  history.push(newItem);
+  let newInput = req.body;
+  console.log(newInput);
+  history.push(newInput);
 
   res.sendStatus(201);
 });
