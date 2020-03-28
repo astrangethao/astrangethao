@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const bodyParser = require("body-parser");
+const history = require("./modules/history");
 
 app.use(express.static("server/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,6 +12,14 @@ app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT} `);
 });
 
-app.post("/addition", (req, res) => {
-  res.send("we are posting");
+app.get("/history", (req, res) => {
+  res.send(history);
+});
+
+app.post("/history", (req, res) => {
+  let newItem = req.body;
+  console.log(newItem);
+  history.push(newItem);
+
+  res.sendStatus(201);
 });
