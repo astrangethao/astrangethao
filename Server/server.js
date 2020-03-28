@@ -5,7 +5,9 @@ const bodyParser = require("body-parser");
 const inputs = require("./modules/inputs");
 
 let operator;
-// let total;
+let num1;
+let num2;
+let total = 0;
 
 console.log(operator);
 
@@ -27,7 +29,16 @@ app.post("/inputs", (req, res) => {
   inputs.push(newInput);
   for (let i = 0; i < inputs.length; i++) {
     operator = inputs[i].operator;
-    console.log(operator);
+    num1 = parseFloat(inputs[i].num1);
+    num2 = parseFloat(inputs[i].num2);
+    console.log("operator:", operator);
+    console.log("num1:", num1);
+    console.log("num2:", num2);
+    if (operator == "+") {
+      total = num1 + num2;
+      console.log(total);
+    }
   }
+
   res.send(inputs);
 });
