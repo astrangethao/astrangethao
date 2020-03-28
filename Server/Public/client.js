@@ -15,7 +15,7 @@ function init() {
 }
 
 let operator;
-
+let total;
 //
 //EVENT HANDLERS
 // -------------
@@ -31,6 +31,8 @@ function submitInputs(event) {
     num2: parseFloat($(".js-input-number2").val()),
     operator: operator
   };
+
+  clearInputs();
 
   postInput(newInput);
 }
@@ -53,9 +55,26 @@ function postInput(inputData) {
   })
     .then(response => {
       console.log(response);
+      getTotal();
     })
     .catch(err => {});
 }
+
+function getTotal() {
+  $.ajax({
+    type: "GET",
+    url: "/total"
+  })
+    .then(response => {
+      total = response.total;
+      console.log(total);
+    })
+    .catch(err => {
+      console.warn("Whoops! Something went wrong in the get request!");
+    });
+}
+
+console.log(getTotal());
 
 //
 // RENDER
