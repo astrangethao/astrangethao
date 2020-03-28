@@ -56,3 +56,9 @@ function postInput(inputData) {
     })
     .catch(err => {});
 }
+
+//
+// RENDER
+// -------
+
+function render() {}

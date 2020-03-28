@@ -4,6 +4,11 @@ const PORT = 3000;
 const bodyParser = require("body-parser");
 const inputs = require("./modules/inputs");
 
+let operator;
+// let total;
+
+console.log(operator);
+
 app.use(express.static("server/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -20,6 +25,9 @@ app.post("/inputs", (req, res) => {
   let newInput = req.body;
   console.log(newInput);
   inputs.push(newInput);
-
-  res.sendStatus(201);
+  for (let i = 0; i < inputs.length; i++) {
+    operator = inputs[i].operator;
+    console.log(operator);
+  }
+  res.send(inputs);
 });
