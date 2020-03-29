@@ -9,6 +9,7 @@ function init() {
     operator = event.target.innerHTML;
   });
   $(".js-btn-data-clear").on("click", clearInputs);
+  getHistory();
 }
 
 //
@@ -33,7 +34,6 @@ function submitInputs() {
 //
 // API INTERACTIONS / AJAX CALLS
 // -----------------------------
-
 function postInput(inputData) {
   $.ajax({
     method: "POST",
@@ -72,6 +72,7 @@ function getHistory() {
 
 function render() {
   console.log("render");
+
   $(".js-list-record").empty();
   for (let i = 0; i < history.length; i++) {
     let result = history[i];
@@ -84,7 +85,7 @@ function render() {
   if (lastIndex != undefined) {
     $(".js-expression-result").empty();
     $(".js-expression-result").append(`
-    <h2> ${lastIndex.total} </h2>
-    `);
+      <h2> ${lastIndex.total} </h2>
+      `);
   }
 }
